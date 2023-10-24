@@ -14,12 +14,9 @@ function App() {
   const [NewAlbumsData, setNewAlbumsData] = useState([]);
   const [songsData, setSongsData] = useState([]);
   const [filteredDataValue, setFilteredDataValue] = useState([]);
-  const [toggle, setToggle] = useState(false);
   const [value, setValue] = useState(0);
 
-  const handleToggle = () => {
-    setToggle(!toggle);
-  };
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -33,6 +30,10 @@ function App() {
       key = "rock";
     } else if (value === 2) {
       key = "pop";
+    }else if (value === 3) {
+      key = "jazz";
+    }else if (value === 4) {
+      key = "blues";
     }
     const res = songsData.filter((item) => item.genre.key === key);
     filteredData(res);
@@ -75,7 +76,6 @@ function App() {
     generateNewAlbumsData();
     generateAllSongsData();
   }, []);
-
   return (
     <div>
       <Navbar />
@@ -101,7 +101,6 @@ function App() {
           filteredData={filteredData}
           filteredDataValues={filteredDataValue}
           value={value}
-          handleToggle={handleToggle}
           handleChange={handleChange}
         />
          <hr className={styles.app__horizontal} />
