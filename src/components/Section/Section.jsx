@@ -3,8 +3,9 @@ import styles from "./Section.module.css";
 import { CircularProgress } from "@mui/material";
 import Card from "../Card/Card";
 import Carousel from "../Carousel/Carousel";
+import BasicTabs from "../Tabs/Tabs";
 
-const Section = ({ title, data, type }) => {
+const Section = ({ title, data, type ,filteredData=null,filteredDataValues=[],value=0,handleChange=null}) => {
   const [carouselToggle, setCarouselToggle] = useState(true);
 
   const handleToggle = () => {
@@ -19,22 +20,27 @@ const Section = ({ title, data, type }) => {
           {!carouselToggle ? "Collapse All" : "Show All"}
         </h4>
       </div>
+      {type === "song" ? (
+        <BasicTabs value={value} handleChange={handleChange} />
+      ) : null}
       {data.length === 0 ? (
         <CircularProgress />
       ) : (
         <div className={styles.cardWrapper}>
           {!carouselToggle ? (
             <div className={styles.wrapper}>
-              {data.map(item => (
+              {data.map((item) => (
                 <Card data={item} type={type} />
               ))}
             </div>
           ) : (
-            <Carousel data={data} renderComponent={(data) => <Card data={data} type={type}/>}/>
+            <Carousel
+              data={data}
+              renderComponent={(data) => <Card data={data} type={type} />}
+            />
           )}
         </div>
       )}
-      
     </div>
   );
 };
