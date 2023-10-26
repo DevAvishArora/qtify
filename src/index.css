@@ -34,9 +34,20 @@ img,svg{
   margin-right: 50px !important;
 }
 .css-1lym95h-MuiGrid-root{
-  margin-bottom: 50px;
-  margin-left: -96px;
+  margin-bottom: 50px !important;
+  margin-left: -96px !important;
   width: 1730px !important
   ;
-  height: 233px;
+  height: 233px !important;
+}
+.css-1h51icj-MuiAutocomplete-root .MuiOutlinedInput-root {
+  padding: 9px;
+  width: 569px;
+  background-color: whitesmoke;
+}
+.Search_searchButton__IF4qG {
+
+  height: 115% !important;
+ 
+  background-color: whitesmoke !important;
 }

@@ -16,7 +16,7 @@ function App() {
   const [filteredDataValue, setFilteredDataValue] = useState([]);
   const [value, setValue] = useState(0);
 
-
+  console.log("data------->",data);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -46,14 +46,17 @@ function App() {
     try {
       const data = await fetchTopAlbums();
       setAlbumsData(data);
+      setData((prevData) => [...prevData, ...data]);
     } catch (e) {
       console.error(e);
     }
   };
+
   const generateNewAlbumsData = async () => {
     try {
       const data = await fetchNewAlbums();
       setNewAlbumsData(data);
+      setData((prevData) => [...prevData, ...data]);
     } catch (e) {
       console.error(e);
     }
@@ -64,6 +67,7 @@ function App() {
       const data = await fetchSongs();
       setSongsData(data);
       setFilteredDataValue(data);
+      setData((prevData) => [...prevData, ...data]);
     } catch (err) {
       console.error(err);
     }
@@ -78,7 +82,7 @@ function App() {
   }, []);
   return (
     <div>
-      <Navbar />
+      <Navbar  data={data}/>
       <Hero />
       <div className={styles.sectionWrapper}>
         <Section
